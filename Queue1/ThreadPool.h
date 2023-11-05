@@ -38,11 +38,19 @@ class ThreadPool {
         }
         return;
     }
-
+    void operator=(const ThreadPool&) ; //copy, move, assignment prohibited!
+    ThreadPool(const  ThreadPool&) ;
+    ThreadPool(ThreadPool&&);
+    ThreadPool operator=(const ThreadPool&&);
 public:
+
+
+
     ThreadPool(unsigned long _num_threads): num_threads(_num_threads) {
         threads.reserve(num_threads);        
     }
+
+
 
     ~ThreadPool() {
         wait_all();
